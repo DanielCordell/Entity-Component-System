@@ -114,7 +114,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="component.cpp" />
-    <ClCompile Include="Includes\entity.cpp" />
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="Includes\entity.h" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

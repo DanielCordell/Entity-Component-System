@@ -1,6 +1,6 @@
 #include <algorithm>
 
-#include "entity.h"
+#include "Includes/entity.h"
 
 namespace ecs{
 	Component* Entity::add(Component newComp)
