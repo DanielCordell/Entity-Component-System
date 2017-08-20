@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Source\component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Includes\entity.h">
+    <ClCompile Include="Source\entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="component.cpp">
+    <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entity.cpp">
+    <ClCompile Include="Source\Includes\entity.h">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Includes\component.h">
+    <ClInclude Include="Source\Includes\component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
