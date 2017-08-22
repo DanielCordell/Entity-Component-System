@@ -7,6 +7,7 @@
 #include "constants.h"
 #include "component.h"
 #include "logger.h"
+#include <any>
 
 namespace ecs {
 	// An Entity is a grouping of components. An entity can only have one of each component type.
@@ -25,7 +26,7 @@ namespace ecs {
 		void clear();
 
 		//Component Manipulation
-		template <class T> void add();
+		template <class T> void add(std::initializer_list<std::any> args);
 		template <class T> std::shared_ptr<Component> get();
 
 		~Entity();
@@ -58,8 +59,14 @@ namespace ecs {
 		}
 	}
 	template<class T>
-	void Entity::add() {
-
+	void Entity::add(std::initializer_list<std::any> args) {
+		if (!isComponent<T>()) {
+			Logger::Log(Logger::WARNING, "Trying to create a component that is not a component type. Will ignore.");
+			return;
+		}
+		auto component = std::make_shared<T>(args);
+		compflags.set(T::type);
+		components.push_back(component);
 	}
 	template<class T>
 	std::shared_ptr<Component> Entity::get()
