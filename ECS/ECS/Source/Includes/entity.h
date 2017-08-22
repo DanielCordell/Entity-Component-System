@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "component.h"
+#include <optional>
 
 namespace ecs {
 	// An Entity is a grouping of components. An entity can only have one of each component type.
@@ -13,8 +14,8 @@ namespace ecs {
 
 	public:
 		//Gets a component from an entity based on its type;
-		Component*	add(Component component);
-		Component*	get(Component::ComponentType type);
-		bool		has(Component::ComponentType type);
+		std::optional<Component&>	add(Component component);
+		std::optional<Component&>	get(Component::ComponentType type);
+		bool						has(Component::ComponentType type);
 	};
 }
