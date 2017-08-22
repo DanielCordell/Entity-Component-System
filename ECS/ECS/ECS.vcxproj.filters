@@ -27,9 +27,18 @@
     <ClCompile Include="Source\Includes\entity.h">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Includes\component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Includes\logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Includes\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

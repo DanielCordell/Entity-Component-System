@@ -116,10 +116,13 @@
     <ClCompile Include="Source\component.cpp" />
     <ClCompile Include="Source\entity.cpp" />
     <ClCompile Include="Source\Includes\entity.h" />
+    <ClCompile Include="Source\logger.cpp" />
     <ClCompile Include="Source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Includes\component.h" />
+    <ClInclude Include="Source\Includes\constants.h" />
+    <ClInclude Include="Source\Includes\logger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

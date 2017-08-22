@@ -1,4 +1,5 @@
 #pragma once
+#include <type_traits>
 
 namespace ecs {
 
@@ -6,8 +7,13 @@ namespace ecs {
 	public:
 		enum ComponentType;
 
-		const ComponentType type;
-		Component(ComponentType type);
+		static const ComponentType type;
+		Component();
 	};
 
+	template<class T>
+	bool isComponent()
+	{
+		return std::is_base_of<Component, T>::value;
+	}
 }
