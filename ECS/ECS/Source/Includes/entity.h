@@ -17,5 +17,7 @@ namespace ecs {
 		std::optional<Component&>	add(Component component);
 		std::optional<Component&>	get(Component::ComponentType type);
 		bool						has(Component::ComponentType type);
+		//Convenience
+		auto operator[](Component::ComponentType type) { return get(type); }
 	};
 }
