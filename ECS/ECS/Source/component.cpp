@@ -2,5 +2,5 @@
 #include "Includes/constants.h"
 
 namespace ecs {
-	Component::Component() { }
+
 }

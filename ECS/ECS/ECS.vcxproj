@@ -122,6 +122,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Includes\component.h" />
     <ClInclude Include="Source\Includes\constants.h" />
+    <ClInclude Include="Source\Includes\entitymanager.h" />
     <ClInclude Include="Source\Includes\logger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 
 namespace ecs::consts {
 	enum class ComponentType : unsigned int {
