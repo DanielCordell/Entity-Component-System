@@ -1,5 +1,4 @@
 #pragma once
-#include <cstdint>
 #include <memory>
 #include <vector>
 
@@ -11,16 +10,46 @@ namespace ecs {
 		typedef std::shared_ptr<Entity> entityPtr;
 		typedef std::vector<entityPtr> entityList;
 
-		entityList getEntitiesByID();
-		template <class C> 
-		entityList getEntitiesByComp();
-		template <class C1, class C2, class... More> 
-		entityList getEntityByComp();
+		EntityManager();
 
+		//Getting Entities based on ID
+		entityPtr getEntityByID(const Entity::idType id) const;
+
+		//Getting Entities based on their Components
+		template <class C> 
+		entityList getEntitiesByComp() const;
+		template <class C1, class C2, class... More> 
+		entityList getEntitiesByComp() const;
+
+		//Adding Entities
 		entityPtr createEntity();
-		entityPtr addEntity(Entity entity);
+		entityPtr addEntity(const Entity& entity);
+
+		//Removing Entities
+		void removeEntity(const Entity::idType id);
+		void clear();
+
+		~EntityManager();
 	private:
-		static uint64_t eCount;
-		static entityList entities;
+		Entity::idType eidCount;
+		entityList entities;
 	};
+
+	template <class C>
+	EntityManager::entityList EntityManager::getEntitiesByComp() const {
+		entityList list;
+		for (auto i = entities.begin(); i != entities.end(); ++i) {
+			if ((*i)->hasComp<C>()) list.push_back(*i);
+		}
+		return list;
+	}
+
+	template <class C1, class C2, class ... More>
+	EntityManager::entityList EntityManager::getEntitiesByComp() const {
+		entityList list;
+		for (auto i = entities.begin(); i != entities.end(); ++i) {
+			if ((*i)->hasComp<C1, C2, More ...>()) list.push_back(*i);
+		}
+		return list;
+	}
 }

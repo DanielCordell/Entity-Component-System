@@ -10,37 +10,39 @@
 #include "logger.h"
 
 namespace ecs {
-	// An Entity is a grouping of components. An entity can only have one of each component type.
+	// An Entity is a grouping of Components. An Entity can only have one of each Component type.
 	class Entity {
 	public:
 		typedef std::shared_ptr<Component> compPtr;
 		typedef std::vector<compPtr> compList;
-		typedef const uint64_t idType;
+		typedef uint64_t idType;
 
-		//Testing to see if an entity contains a specific Component
-		template <class C> bool hasComp();
-		template <class C1, class C2, class... More> bool hasComp();
+		Entity(idType id) : id(id) {}
+
+		//Entity ID
+		const idType id;
+
+		//Testing to see if an Entity contains a specific Component
+		template <class C> bool hasComp() const;
+		template <class C1, class C2, class... More> bool hasComp() const;
 
 		//Removing Components
 		template <class C> void removeComp();
 		void clear();
 
-		//Component Manipulation
+		//Component manipulation
 		compPtr addComp(const Component& component);
 		template <class C> compPtr addComp(std::initializer_list<std::any> args);
-		template <class C> compPtr getComp();
-
-		Entity(idType id) : id(id) {}
+		template <class C> compPtr getComp() const;
 
 		~Entity();
 	private:
 		compList components;
 		std::bitset<static_cast<size_t>(consts::ComponentType::NUM_TYPES)> compflags;
-		idType id;
 	};
 
 	template<class C>
-	bool Entity::hasComp() {
+	bool Entity::hasComp() const {
 		if (!isComp<C>()) {
 			Logger::Log(Logger::ERROR, "Trying to detect a component that is not a component type. Will ignore.");
 			return false;
@@ -50,7 +52,7 @@ namespace ecs {
 	}
 
 	template <class C1, class C2, class ... More>
-	bool Entity::hasComp() {
+	bool Entity::hasComp() const {
 		return hasComp<C1>() && hasComp<C2, More ...>();
 	}
 
@@ -85,7 +87,7 @@ namespace ecs {
 	}
 
 	template<class C>
-	Entity::compPtr Entity::getComp() {
+	Entity::compPtr Entity::getComp() const {
 		if (!isComp<C>()) {
 			Logger::Log(Logger::ERROR, "Trying to get a component that is not a component type!");
 			return nullptr;

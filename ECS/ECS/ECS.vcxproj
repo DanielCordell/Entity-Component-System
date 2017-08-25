@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClCompile Include="Source\component.cpp" />
     <ClCompile Include="Source\entity.cpp" />
+    <ClCompile Include="Source\entitymanager.cpp" />
     <ClCompile Include="Source\Includes\entity.h" />
     <ClCompile Include="Source\logger.cpp" />
     <ClCompile Include="Source\main.cpp" />
