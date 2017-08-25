@@ -24,6 +24,7 @@ namespace ecs {
 		//Adding Entities
 		entityPtr createEntity();
 		entityPtr addEntity(const Entity& entity);
+		entityPtr createPlayer(); //TODO implement
 
 		//Removing Entities
 		void removeEntity(const Entity::idType id);
