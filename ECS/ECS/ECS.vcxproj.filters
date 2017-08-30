@@ -47,5 +47,8 @@
     <ClInclude Include="Source\Includes\entitymanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Includes\system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,7 +5,6 @@ namespace ecs {
 
 	EntityManager::EntityManager() : eidCount(0) {}
 
-
 	EntityManager::entityPtr EntityManager::getEntityByID(const Entity::idType id) const {
 		for (auto i = entities.begin(); i != entities.end(); ++i) {
 			if ((*i)->id == id) return *i;
