@@ -26,13 +26,20 @@ namespace ecs {
 		template <class C> bool hasComp() const;
 		template <class C1, class C2, class... More> bool hasComp() const;
 
+		//Testing to see if template type is a valid component 
+		template <class C> bool testComp() const;
+
 		//Removing Components
 		template <class C> void removeComp();
+		template <class C>
 		void clear();
 
 		//Component manipulation
+		
+		// Add an already existing component to an entity.
 		compPtr addComp(const Component& component);
-		template <class C> compPtr addComp(std::initializer_list<std::any> args);
+		template <class C> compPtr newComp(std::initializer_list<std::any> args);
+		template <class C> compPtr newComp();
 		template <class C> compPtr getComp() const;
 
 		~Entity();
@@ -57,6 +64,20 @@ namespace ecs {
 	}
 
 	template<class C>
+	bool Entity::testComp() const
+	{
+		if (!isComp<C>()) {
+			Logger::Log(Logger::WARNING, "Trying to create a component that is not a component type. Will ignore.");
+			return false;
+		}
+		if (!hasComp<C>()) {
+			Logger::Log(Logger::WARNING, "Trying to add a component to an entity when one already exists of this type.");
+			return false;
+		}
+		return true;
+	}
+
+	template<class C>
 	void Entity::removeComp() {
 		if (!isComp<C>()) {
 			Logger::Log(Logger::WARNING, "Trying to remove a component that is not a component type. Will ignore.");
@@ -70,16 +91,18 @@ namespace ecs {
 		}
 	}
 
+	template <class C>
+	Entity::compPtr Entity::newComp() {
+		if (!testComp<C>()) return;
+		compPtr component = std::make_shared<C>();
+		compflags.set(C::type);
+		components.push_back(component);
+		return component;
+	}
+
 	template<class C>
-	Entity::compPtr Entity::addComp(std::initializer_list<std::any> args) {
-		if (!isComp<C>()) {
-			Logger::Log(Logger::WARNING, "Trying to create a component that is not a component type. Will ignore.");
-			return;
-		}
-		if (!hasComp<C>()) {
-			Logger::Log(Logger::WARNING, "Trying to add a component to an entity when one already exists of this type.");
-			return;
-		}
+	Entity::compPtr Entity::newComp(std::initializer_list<std::any> args) {
+		if (!testComp<C>()) return;
 		compPtr component = std::make_shared<C>(args);
 		compflags.set(C::type);
 		components.push_back(component);
