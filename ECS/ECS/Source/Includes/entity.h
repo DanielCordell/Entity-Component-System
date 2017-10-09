@@ -110,6 +110,7 @@ namespace ecs {
 			return component;
 		}
 		catch (std::exception ex){
+			Logger::Log(Logger::Level::ERROR, "Entity Constructor Initialiser List contains invalid arguments. Error is below.");
 			Logger::Log(Logger::Level::ERROR, ex.what());
 			return nullptr;
 		}
