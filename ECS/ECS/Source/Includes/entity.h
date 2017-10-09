@@ -103,10 +103,16 @@ namespace ecs {
 	template<class C>
 	Entity::compPtr Entity::newComp(std::initializer_list<std::any> args) {
 		if (!testComp<C>()) return;
-		compPtr component = std::make_shared<C>(args);
-		compflags.set(C::type);
-		components.push_back(component);
-		return component;
+		try {
+			compPtr component = std::make_shared<C>(args);
+			compflags.set(C::type);
+			components.push_back(component);
+			return component;
+		}
+		catch (std::exception ex){
+			Logger::Log(Logger::Level::ERROR, ex.what());
+			return nullptr;
+		}
 	}
 
 	template<class C>

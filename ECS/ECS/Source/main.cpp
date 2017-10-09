@@ -8,7 +8,7 @@ int main()
 {
 	ecs::EntityManager manager;
 	auto e = manager.createEntity();
-	e->newComp();
-	e->addComp<ecs::Component>(std::initializer_list<std::any>());
+	e->newComp<ecs::Component>();
+	e->newComp<ecs::Component>(std::initializer_list<std::any>());
 
 }
